@@ -4,21 +4,21 @@ pipeline {
 	
         stage('Compile Stage') { 
             steps{
-				withEnv(maven:'Maven_home'){
+				withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ){
 				 sh 'mvn clean compile'
 			  }
 			 }
 			}
 		stage('Testing Stage') { 
             steps{
-				withEnv(maven:'Maven_home'){
+				withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ){
 				 sh 'mvn test'
 			  }
 			 }
 			}
 		stage('Deploy Stage') { 
             steps{
-				withEnv(maven:'Maven_home'){
+				withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ){
 				 sh 'mvn deploy'
 			  }
 			 }
